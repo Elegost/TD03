@@ -7,17 +7,42 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 public class FragmentFiche extends Fragment
 {
-    ImageView img;
+    private WebView webView;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        //img = (ImageView) container.findViewById(R.id.imageView);
-        //img.setImageResource(R.drawable.icone);
-        return inflater.inflate(R.layout.fragment_fiche, container, false);
+        View view = inflater.inflate(R.layout.fragment_fiche, container, false);
+        webView = (WebView) view.findViewById(R.id.webView);
+
+        Bundle args = getArguments();
+        try {
+            String data = args.getString("data");
+            if (data != null)
+                chargePlanete(data);
+        }
+        catch (Exception ex)
+        {
+
+        }
+        return view;
+    }
+
+    public void chargePlanete(String data){
+        webView.loadUrl("https://fr.wikipedia.org/wiki/" + data);
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
     }
 }
