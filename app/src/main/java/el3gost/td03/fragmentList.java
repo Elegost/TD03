@@ -18,11 +18,25 @@ public class fragmentList extends Fragment {
     private ListView lv;
     private ArrayAdapter<String> listAdapter ;
 
-    public View onCreateView(LayoutInflater inflater,ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
+        
+        View view = inflater.inflate(R.layout.fragment_list, container, false);
+        lv = (ListView) view.findViewById(R.id.lv);
+
+        // Create and populate a List of planet names.
+        String[] planets = new String[] { "Mercury", "Venus", "Earth", "Mars",
+                "Jupiter", "Saturn", "Uranus", "Neptune"};
+        ArrayList<String> planetList = new ArrayList<String>();
+        planetList.addAll(Arrays.asList(planets));
+
+        // Create ArrayAdapter using the planet list.
+        listAdapter = new ArrayAdapter<String>(container.getContext(), R.layout.simplerow, planetList);
 
 
-        return inflater.inflate(R.layout.fragment_list , container, false);
+        // Set the ArrayAdapter as the ListView's adapter.
+        lv.setAdapter( listAdapter );
+
+        return view;
 
     }
 }
