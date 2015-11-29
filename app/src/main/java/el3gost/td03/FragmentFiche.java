@@ -11,6 +11,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class FragmentFiche extends Fragment
@@ -30,13 +31,13 @@ public class FragmentFiche extends Fragment
         }
         catch (Exception ex)
         {
-
         }
         return view;
     }
 
     public void chargePlanete(String data){
-        webView.loadUrl("https://fr.wikipedia.org/wiki/" + data);
+        webView.loadUrl("https://wikipedia.org/wiki/" + data + "_(planet)");
+        Toast.makeText(getContext() , "https://wikipedia.org/wiki/" + data + "_(planet)", Toast.LENGTH_LONG).show();
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
