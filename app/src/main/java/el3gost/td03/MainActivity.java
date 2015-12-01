@@ -1,8 +1,5 @@
 package el3gost.td03;
 
-
-import android.app.FragmentManager;
-
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.FragmentTransaction;
